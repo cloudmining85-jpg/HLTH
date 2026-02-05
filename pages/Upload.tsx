@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { UploadCloud, File, X, BrainCircuit, ShieldCheck, Sparkles, Camera, MousePointer2 } from 'lucide-react';
+import { UploadCloud, File as FileIcon, X, BrainCircuit, ShieldCheck, Sparkles, Camera, MousePointer2 } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { analyzeMedicalReport } from '../services/geminiService';
 import { MedicalReport, AnalysisStatus } from '../types';
@@ -117,6 +117,7 @@ const Upload: React.FC = () => {
     const ia = new Uint8Array(ab);
     for (let i = 0; i < byteString.length; i++) ia[i] = byteString.charCodeAt(i);
     const blob = new Blob([ab], { type: 'image/jpeg' });
+    // Fix: Using the native File constructor correctly by renaming the lucide-react File icon import
     const cameraFile = new File([blob], "camera-capture.jpg", { type: "image/jpeg" });
     setFile(cameraFile);
   };
@@ -191,7 +192,8 @@ const Upload: React.FC = () => {
             </>
           ) : (
              <div className="w-full h-full flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-900">
-               <File className="w-20 h-20 text-blue-200 mb-4" />
+               {/* Fix: Using renamed FileIcon to avoid confusion with native File type */}
+               <FileIcon className="w-20 h-20 text-blue-200 mb-4" />
                <motion.div 
                 initial={{ top: '0%' }}
                 animate={{ top: '100%' }}
@@ -284,7 +286,8 @@ const Upload: React.FC = () => {
                 {preview ? (
                   <img src={preview} className="w-full h-full object-cover" />
                 ) : (
-                  <File className="w-10 h-10 text-blue-200" />
+                  /* Fix: Using renamed FileIcon to avoid confusion with native File type */
+                  <FileIcon className="w-10 h-10 text-blue-200" />
                 )}
              </div>
              <div className="flex-1">

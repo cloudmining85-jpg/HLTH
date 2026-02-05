@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisData } from "../types";
 
@@ -16,19 +15,19 @@ export const analyzeMedicalReport = async (
     properties: {
       document_type: { 
         type: Type.STRING, 
-        description: "Exact type of medical document (e.g. Histopathology, CBC, MRI, ECG, Prescription)." 
+        description: "Exact medical document type (e.g., Histopathology, CBC, MRI, ECG, Biopsy)." 
       },
       summary: {
         type: Type.STRING,
-        description: "Patient explanation in simple language. Trilingual comparison: (Arabic, French, English).",
+        description: "Trilingual explanation for the patient (Arabic, French, English sections). Use simple language.",
       },
       clinical_report: {
         type: Type.STRING,
-        description: "Technical professional report for doctors with Differential Diagnosis and evidence-based plan.",
+        description: "Highly technical technical report for medical professionals. Use evidence-based medicine terminology.",
       },
       executive_summary: {
         type: Type.STRING,
-        description: "Short executive summary for busy doctors with local pharmacy medicine suggestions.",
+        description: "Concise summary for doctors including local pharmacy generic medicine suggestions.",
       },
       vital_markers: {
         type: Type.ARRAY,
@@ -49,22 +48,30 @@ export const analyzeMedicalReport = async (
         items: {
           type: Type.OBJECT,
           properties: {
-            text: { type: Type.STRING, description: "Exact phrase from the document." },
-            reason: { type: Type.STRING, description: "Why this is highlighted." },
+            text: { type: Type.STRING, description: "The specific sensitive medical phrase from the original document text." },
+            reason: { type: Type.STRING, description: "Clinical significance of this phrase." },
             color: { type: Type.STRING, enum: ['red', 'yellow', 'green'] }
           },
-          required: ["text", "color"]
+          required: ["text", "color", "reason"]
         }
       },
       recommendations: {
         type: Type.ARRAY,
         items: { type: Type.STRING },
-        description: "Lifestyle suggestions for patients.",
+        description: "Lifestyle and patient-oriented advice.",
       },
       treatment_plan: {
         type: Type.ARRAY,
         items: { type: Type.STRING },
-        description: "Clinical next steps and tests for the doctor.",
+        description: "Clinical protocols and evidence-based plan for the physician.",
+      },
+      differential_diagnosis: {
+        type: Type.ARRAY,
+        items: { type: Type.STRING }
+      },
+      complementary_tests: {
+        type: Type.ARRAY,
+        items: { type: Type.STRING }
       },
       urgency_level: {
         type: Type.STRING,
@@ -72,7 +79,7 @@ export const analyzeMedicalReport = async (
       },
       geographic_tips: {
         type: Type.STRING,
-        description: "Generic medicine names and local protocols for the user region.",
+        description: "Regional medicine context (generic names and protocols) for the specified location.",
       },
       specialized_findings: {
         type: Type.OBJECT,
@@ -80,7 +87,8 @@ export const analyzeMedicalReport = async (
           qrs_complex: { type: Type.STRING },
           ejection_fraction: { type: Type.STRING },
           malignancy_risk: { type: Type.STRING },
-          drug_interactions: { type: Type.STRING }
+          drug_interactions: { type: Type.STRING },
+          calibration_notes: { type: Type.STRING }
         }
       }
     },

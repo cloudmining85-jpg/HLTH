@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
@@ -115,18 +114,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </AnimatePresence>
       
       {/* Mobile Header */}
-      <header className="md:hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b dark:border-slate-800 px-4 py-4 flex items-center justify-between z-50">
-        <div className="flex items-center gap-2">
-          <div className="bg-blue-600 p-1.5 rounded-lg">
+      <header className="md:hidden bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b dark:border-slate-800 px-6 py-5 flex items-center justify-between z-50">
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-600 p-2 rounded-xl shadow-lg">
             <ShieldCheck className="w-5 h-5 text-white" />
           </div>
           <span className="font-black text-blue-900 dark:text-white tracking-tight">{t('app_title')}</span>
         </div>
         <div className="flex items-center gap-2">
-          <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-xl">
+          <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-3 bg-slate-100 dark:bg-slate-800 rounded-2xl">
             {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
           </button>
-          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-2 bg-slate-100 dark:bg-slate-800 rounded-xl">
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="p-3 bg-slate-100 dark:bg-slate-800 rounded-2xl">
             {isSidebarOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -134,59 +133,62 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       {/* Sidebar - Fixed Position for Desktop */}
       <aside className={`
-        fixed inset-y-0 z-40 w-72 bg-white dark:bg-slate-900 border-r dark:border-slate-800 transform transition-all duration-300 
+        fixed inset-y-0 z-40 w-80 bg-white dark:bg-slate-900 border-r dark:border-slate-800 transform transition-all duration-500 ease-in-out
         md:relative md:translate-x-0 h-full flex-shrink-0
         ${isSidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'}
         ${i18n.language === 'ar' ? 'right-0 left-auto border-l border-r-0 md:translate-x-0' : 'left-0 right-auto'}
       `}>
-        <div className="p-8 h-full flex flex-col overflow-y-auto">
-          <div className="hidden md:flex items-center gap-3 mb-12">
-             <div className="bg-blue-600 p-2 rounded-2xl shadow-xl shadow-blue-200">
-              <ShieldCheck className="w-6 h-6 text-white" />
+        <div className="p-10 h-full flex flex-col">
+          <div className="hidden md:flex items-center gap-4 mb-14">
+             <div className="bg-blue-600 p-3 rounded-[1.25rem] shadow-2xl shadow-blue-200">
+              <ShieldCheck className="w-7 h-7 text-white" />
             </div>
-            <h1 className="font-black text-xl leading-tight text-blue-900 dark:text-white tracking-tighter">{t('app_title')}</h1>
+            <h1 className="font-black text-2xl leading-tight text-blue-900 dark:text-white tracking-tighter">{t('app_title')}</h1>
           </div>
 
-          <nav className="flex-1 space-y-2">
+          <nav className="flex-1 space-y-3">
             {menuItems.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsSidebarOpen(false)}
                 className={({ isActive }) => `
-                  flex items-center gap-4 px-5 py-4 rounded-2xl font-bold transition-all
+                  flex items-center gap-5 px-6 py-5 rounded-[1.5rem] font-black transition-all group
                   ${isActive 
-                    ? 'bg-blue-600 text-white shadow-xl shadow-blue-100' 
-                    : 'text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'}
+                    ? 'bg-blue-600 text-white shadow-2xl shadow-blue-200' 
+                    : 'text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white'}
                 `}
               >
-                {item.icon}
-                <span>{item.label}</span>
+                <span className="transition-transform group-hover:scale-110">{item.icon}</span>
+                <span className="text-sm tracking-wide">{item.label}</span>
               </NavLink>
             ))}
           </nav>
 
-          <div className="pt-8 border-t dark:border-slate-800 mt-8 space-y-3">
-            <button onClick={() => setIsDarkMode(!isDarkMode)} className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-slate-500 dark:text-slate-400 font-bold hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+          <div className="pt-10 border-t dark:border-slate-800 mt-10 space-y-4">
+            <button onClick={() => setIsDarkMode(!isDarkMode)} className="w-full flex items-center gap-5 px-6 py-5 rounded-[1.5rem] text-slate-400 font-black hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all">
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              <span>Toggle Dark Mode</span>
+              <span className="text-sm">Appearance</span>
             </button>
-            <button onClick={toggleLanguage} className="w-full flex items-center justify-between px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold transition-all border dark:border-slate-700">
-              <div className="flex items-center gap-3">
-                <Globe className="w-5 h-5 text-blue-500" />
-                <span>{t('language')}</span>
+            <button onClick={toggleLanguage} className="w-full flex items-center justify-between px-6 py-5 rounded-[1.5rem] bg-slate-50 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300 font-black transition-all border dark:border-slate-800">
+              <div className="flex items-center gap-4">
+                <Globe className="w-5 h-5 text-blue-600" />
+                <span className="text-sm">{t('language')}</span>
               </div>
             </button>
-            <button className="w-full flex items-center gap-4 px-5 py-4 rounded-2xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 font-bold transition-all">
+            <button className="w-full flex items-center gap-5 px-6 py-5 rounded-[1.5rem] text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/10 font-black transition-all">
               <LogOut className="w-5 h-5" />
-              <span>Logout</span>
+              <span className="text-sm">Sign Out</span>
             </button>
           </div>
         </div>
       </aside>
 
-      <main className="flex-1 overflow-y-auto p-4 md:p-10 relative">
-        {children}
+      {/* Main Content Area - Correct scrolling behavior */}
+      <main className="flex-1 overflow-y-auto relative h-full">
+        <div className="p-6 md:p-12 lg:p-16">
+          {children}
+        </div>
       </main>
     </div>
   );

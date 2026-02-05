@@ -1,4 +1,3 @@
-
 export enum AnalysisStatus {
   PENDING = 'pending',
   ANALYZED = 'analyzed',
@@ -29,18 +28,24 @@ export interface VitalMarker {
 
 export interface AnalysisData {
   document_type: string;
-  summary: string; // Trilingual: Ar, Fr, En combined or language specific? Prompt says explanation in comparison tables/sections.
+  summary: string; // Trilingual Ar, Fr, En
   clinical_report: string; // Professional technical report
   executive_summary: string; // Short for doctors
   vital_markers: VitalMarker[];
-  recommendations: string[]; // Lifestyle (Patient)
-  treatment_plan: string[]; // Evidence-based clinical plan (Doctor)
+  recommendations: string[]; 
+  treatment_plan: string[]; 
   differential_diagnosis?: string[];
   complementary_tests?: string[];
   highlight_map: HighlightItem[];
   urgency_level: 'low' | 'medium' | 'high' | 'emergency';
-  geographic_tips?: string; // Generic names + local protocols
-  specialized_findings?: Record<string, any>; // For ECG, Echo, etc.
+  geographic_tips?: string; 
+  specialized_findings?: {
+    qrs_complex?: string;
+    ejection_fraction?: string;
+    malignancy_risk?: string;
+    drug_interactions?: string;
+    calibration_notes?: string;
+  };
 }
 
 export interface MedicalReport {
