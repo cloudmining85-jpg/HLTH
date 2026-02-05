@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AI Health Insights</title>
+    <link rel="manifest" href="manifest.json" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+    {
+      "imports": {
+        "react-router-dom": "https://esm.sh/react-router-dom@^7.13.0",
+        "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+        "i18next": "https://esm.sh/i18next@^25.8.1",
+        "react-i18next": "https://esm.sh/react-i18next@^16.5.4",
+        "framer-motion": "https://esm.sh/framer-motion@^11.11.17",
+        "jspdf": "https://esm.sh/jspdf@^2.5.1",
+        "browser-image-compression": "https://esm.sh/browser-image-compression@^2.0.2"
+      }
+    }
+    </script>
+    <style>
+      :root {
+        --primary: #2563eb;
+        --accent: #2dd4bf;
+      }
+      body {
+        font-family: 'Inter', 'Tajawal', sans-serif;
+        background-color: #f8fafc;
+        transition: background-color 0.3s ease;
+      }
+      .dark body {
+        background-color: #0f172a;
+        color: #f8fafc;
+      }
+      [dir="rtl"] { font-family: 'Tajawal', sans-serif; }
+      .scanner-line {
+        background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+        box-shadow: 0 0 15px var(--accent);
+      }
+      .highlight-yellow {
+        background-color: #fef08a; /* yellow-200 */
+        border-radius: 4px;
+        padding: 0 4px;
+        color: #1a1a1a;
+      }
+      .dark .highlight-yellow {
+        background-color: #ca8a04; /* yellow-600 */
+        color: white;
+      }
+      .camera-overlay {
+        border: 2px dashed rgba(255,255,255,0.5);
+        border-radius: 20px;
+      }
+    </style>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration failed:', err));
+        });
+      }
+      // Initialize dark mode from localStorage
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

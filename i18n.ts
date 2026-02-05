@@ -1,0 +1,140 @@
+
+import i18n from 'i18next';
+import { initReactI18next } from 'react-i18next';
+
+const resources = {
+  en: {
+    translation: {
+      "app_title": "AI Health Insights",
+      "dashboard": "Insights",
+      "upload_report": "Analyze Report",
+      "trends": "Health Trends",
+      "my_reports": "Medical Records",
+      "profile": "My Profile",
+      "language": "العربية / Fr",
+      "patient_view": "Patient View",
+      "doctor_view": "Professional View",
+      "camera_capture": "Capture Report",
+      "camera_tip": "Center report within the frame",
+      "treatment_plan": "Proposed Treatment Plan",
+      "lifestyle_tips": "Lifestyle Suggestions",
+      "local_tips": "Regional Medicine Notes",
+      "scanning_doc": "Scanning Document Structure...",
+      "biometric_ext": "Extracting Biometrics...",
+      "clinical_val": "Clinical Validation...",
+      "urgency": "Urgency",
+      "summary": "Report Summary",
+      "markers": "Vital Markers",
+      "status_analyzed": "Verified Analysis",
+      "view_details": "View Details",
+      "no_reports": "You haven't uploaded any reports yet.",
+      "analyzing": "Analyzing Report",
+      "drop_files": "Drop your file here",
+      "normal": "Normal",
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical",
+      "emergency": "Emergency",
+      "stable": "Stable",
+      "attention": "Attention",
+      "urgent": "Urgent",
+      "disclaimer_title": "Medical Disclaimer",
+      "disclaimer_text": "AI Health Insights provides analysis for educational purposes only. This is not a medical diagnosis. Always consult with a licensed healthcare professional before making health decisions.",
+      "accept_disclaimer": "I Understand & Accept"
+    }
+  },
+  ar: {
+    translation: {
+      "app_title": "رؤى الصحة الذكية",
+      "dashboard": "لوحة التحليل",
+      "upload_report": "تحليل تقرير",
+      "trends": "الاتجاهات الصحية",
+      "my_reports": "السجلات الطبية",
+      "profile": "الملف الشخصي",
+      "language": "English / Fr",
+      "patient_view": "عرض المريض",
+      "doctor_view": "العرض الطبي",
+      "camera_capture": "التقاط صورة",
+      "camera_tip": "ضع التقرير في منتصف الإطار",
+      "treatment_plan": "خطة العلاج المقترحة",
+      "lifestyle_tips": "اقتراحات نمط الحياة",
+      "local_tips": "ملاحظات الأدوية الإقليمية",
+      "scanning_doc": "جاري مسح هيكل المستند...",
+      "biometric_ext": "جاري استخراج البيانات الحيوية...",
+      "clinical_val": "التحقق السريري...",
+      "urgency": "مستوى الخطورة",
+      "summary": "ملخص التقرير",
+      "markers": "المؤشرات الحيوية",
+      "status_analyzed": "تحليل موثق",
+      "view_details": "عرض التفاصيل",
+      "no_reports": "لم تقم بتحميل أي تقارير بعد.",
+      "analyzing": "جاري تحليل التقرير",
+      "drop_files": "ضع الملف هنا",
+      "normal": "طبيعي",
+      "low": "منخفض",
+      "medium": "متوسط",
+      "high": "مرتفع",
+      "critical": "حرج",
+      "emergency": "حالة طوارئ",
+      "stable": "مستقر",
+      "attention": "انتباه",
+      "urgent": "عاجل",
+      "disclaimer_title": "إخلاء مسؤولية طبية",
+      "disclaimer_text": "توفر رؤى الصحة الذكية تحليلاً للأغراض التعليمية فقط. هذا ليس تشخيصاً طبياً. استشر دائماً أخصائي رعاية صحية مرخص قبل اتخاذ قرارات صحية.",
+      "accept_disclaimer": "أفهم وأوافق"
+    }
+  },
+  fr: {
+    translation: {
+      "app_title": "AI Health Insights",
+      "dashboard": "Aperçus",
+      "upload_report": "Analyser Rapport",
+      "trends": "Tendances",
+      "my_reports": "Dossiers Médicaux",
+      "profile": "Profil",
+      "language": "English / Ar",
+      "patient_view": "Vue Patient",
+      "doctor_view": "Vue Professionnelle",
+      "camera_capture": "Capturer Rapport",
+      "camera_tip": "Centrez le rapport dans le cadre",
+      "treatment_plan": "Plan de Traitement Proposé",
+      "lifestyle_tips": "Conseils de Vie",
+      "local_tips": "Notes Médicaments Régionaux",
+      "scanning_doc": "Analyse de la structure...",
+      "biometric_ext": "Extraction biométrique...",
+      "clinical_val": "Validation clinique...",
+      "urgency": "Urgence",
+      "summary": "Résumé du Rapport",
+      "markers": "Indicateurs Vitaux",
+      "status_analyzed": "Analyse Vérifiée",
+      "view_details": "Voir Détails",
+      "no_reports": "Vous n'avez pas encore téléchargé de rapports.",
+      "analyzing": "Analyse en cours",
+      "drop_files": "Déposez votre fichier ici",
+      "normal": "Normal",
+      "low": "Bas",
+      "medium": "Moyen",
+      "high": "Élevé",
+      "critical": "Critique",
+      "emergency": "Urgence",
+      "stable": "Stable",
+      "attention": "Attention",
+      "urgent": "Urgent",
+      "disclaimer_title": "Avis Médical",
+      "disclaimer_text": "AI Health Insights fournit une analyse à des fins éducatives uniquement. Ceci n'est pas un diagnostic médical.",
+      "accept_disclaimer": "Je Comprends et J'accepte"
+    }
+  }
+};
+
+i18n
+  .use(initReactI18next)
+  .init({
+    resources,
+    lng: 'en',
+    fallbackLng: 'en',
+    interpolation: { escapeValue: false }
+  });
+
+export default i18n;

@@ -1,0 +1,9 @@
+
+{
+  "name": "AI Health Insights Pro",
+  "description": "Advanced PWA medical report analysis with clinical-grade vision and geographic medicine matching.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
